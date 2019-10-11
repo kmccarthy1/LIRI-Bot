@@ -1,0 +1,20 @@
+{
+  "name": "LIRI-Bot",
+  "version": "1.0.0",
+  "description": "Homework for University of Richmond's Full Stack Bootcamp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmccarthy1/LIRI-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmccarthy1/LIRI-Bot/issues"
+  },
+  "homepage": "https://github.com/kmccarthy1/LIRI-Bot#readme"
+}
