@@ -5,7 +5,7 @@ require("dotenv").config();
 var command = process.argv[2];
 var argument = process.argv[3];
 var request = require('request')
-var keys = require('./keys.js');
+var keys = require('./key.js');
 var bandsintown = require('bandsintown')("codingbootcamp");
 var moment = require('moment');
 var fs = require("fs");
@@ -16,13 +16,13 @@ var spotify = new Spotify(keys.spotify);
 // command functions
 function spotifySong(){
     if (argument === undefined) {
-        argument = `"The Sign" Ace of Base`
+        argument = `"Holy Ship" Perpetual`
     }
     console.log('spotify this song: ' + argument);
     spotify.search({
             type: 'track',
             query: argument,
-            limit: 1,
+            limit: 2,
         }, function (err, data) {
             if (err) {
                 console.log('Error occured: ' + err);
@@ -51,7 +51,7 @@ Song Sample: ${music.preview_url}
 
 function movieThis(){
     if (argument === undefined) {
-        argument = `Mr.Nobody`
+        argument = ``
     }
     console.log('movie this: ' + argument);
     
@@ -78,7 +78,7 @@ Plot: ${JSON.parse(body).Plot}
 Actors: ${JSON.parse(body).Actors}
                 `, function (err) {
             if (err) throw err;
-            console.log('Saved to log.txt!');
+            console.log('------------------YOUR RESULTS WERE SAVED TO LOG.TXT------------------');
         });
     });
 };
@@ -118,7 +118,7 @@ if (action === "spotify-this-song"){
 
 if (command === "spotify-this-song") {
     if (process.argv[3] === undefined) {
-        argument = `"The Sign" Ace of Base`
+        argument = `"Holy Ship" Perpetual Groove`
     }
     spotifySong();} 
     else if (command === "movie-this"){

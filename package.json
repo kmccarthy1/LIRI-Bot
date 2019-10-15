@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/kmccarthy1/LIRI-Bot/issues"
   },
-  "homepage": "https://github.com/kmccarthy1/LIRI-Bot#readme"
+  "homepage": "https://github.com/kmccarthy1/LIRI-Bot#readme",
+  "dependencies": {
+    "bandsintown": "^1.0.1",
+    "dotenv": "^8.1.0",
+    "node-spotify-api": "^1.1.1",
+    "request": "^2.88.0"
+  }
 }
