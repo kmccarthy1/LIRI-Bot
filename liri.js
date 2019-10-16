@@ -5,7 +5,10 @@ var fs = require("fs");
 var keys = require("./keys");
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
-//vars to capture user inputs.
+
+
+
+
 var userOption = process.argv[2]; 
 var inputParameter = process.argv[3];
 
@@ -28,7 +31,7 @@ function UserInputs (userOption, inputParameter){
         showSomeInfo();
         break;
     default: 
-        console.log("Invalid Option. Please type any of the following options: \nconcert-this \nspotify-this-song \nmovie-this \ndo-what-it-says")
+        console.log("Try Again. Enter one of the following commands: \nconcert-this \nspotify-this-song \nmovie-this \ndo-what-it-says")
     }
 }
 
@@ -36,26 +39,25 @@ function UserInputs (userOption, inputParameter){
 function showConcertInfo(inputParameter){
     var queryUrl = "https://rest.bandsintown.com/artists/" + inputParameter + "/events?app_id=codingbootcamp";
     request(queryUrl, function(error, response, body) {
-    // If the request is successful
-    if (!error && response.statusCode === 200) {
-        var concerts = JSON.parse(body);
-        for (var i = 0; i < concerts.length; i++) {  
-            console.log("----------EVENT INFO----------");  
-            fs.appendFileSync("log.txt", "----------EVENT INFO----------\n");//Append in log.txt file
-            console.log(i);
-            fs.appendFileSync("log.txt", i+"\n");
-            console.log("Venue Name: " + concerts[i].venue.name);
-            fs.appendFileSync("log.txt", "Venue Name: " + concerts[i].venue.name+"\n");
-            console.log("Location: " +  concerts[i].venue.city);
-            fs.appendFileSync("log.txt", "Location: " +  concerts[i].venue.city+"\n");
-            console.log("Date: " +  concerts[i].datetime);
-            fs.appendFileSync("log.txt", "Date: " +  concerts[i].datetime+"\n");
-            console.log("-----------------------------");
-            fs.appendFileSync("log.txt", "-----------------------------"+"\n");
+        if (!error && response.statusCode === 200) {
+            var concerts = JSON.parse(body);
+            for (var i = 0; i < concerts.length; i++) {  
+                console.log("----------EVENT INFO----------");  
+                fs.appendFileSync("log.txt", "----------EVENT INFO----------\n");//Append in log.txt file
+                console.log(i);
+                fs.appendFileSync("log.txt", i+"\n");
+                console.log("Venue Name: " + concerts[i].venue.name);
+                fs.appendFileSync("log.txt", "Venue Name: " + concerts[i].venue.name+"\n");
+                console.log("Location: " +  concerts[i].venue.city);
+                fs.appendFileSync("log.txt", "Location: " +  concerts[i].venue.city+"\n");
+                console.log("Date: " +  concerts[i].datetime);
+                fs.appendFileSync("log.txt", "Date: " +  concerts[i].datetime+"\n");
+                console.log("-----------------------------");
+                fs.appendFileSync("log.txt", "-----------------------------"+"\n");
+            }
+        } else{
+        console.log('Error occurred.');
         }
-    } else{
-      console.log('Error occurred.');
-    }
 });
 };
 //concert this function end
@@ -102,7 +104,7 @@ function showSongInfo(inputParameter) {
 };
 //spotify this song function end
 
-//Funtion for Movie Info: OMDB
+//movie this function start
 function showMovieInfo(inputParameter){
     if (inputParameter === undefined) {
         inputParameter = "The Room"
@@ -140,19 +142,20 @@ function showMovieInfo(inputParameter){
     }
 
 });}
+//movie this function start
 
-//function to get proper Rotten Tomatoes Rating
+
+//functions to get Rotten Tomatoes data
 function getRottenTomatoesRatingObject (data) {
     return data.Ratings.find(function (item) {
        return item.Source === "Rotten Tomatoes";
     });
   }
-  
   function getRottenTomatoesRatingValue (data) {
     return getRottenTomatoesRatingObject(data).Value;
   }
 
-//function for reading out of random.txt file  
+//function for random.txt file  
 function showSomeInfo(){
 	fs.readFile('random.txt', 'utf8', function(err, data){
 		if (err){ 
