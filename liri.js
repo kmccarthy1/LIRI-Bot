@@ -62,7 +62,7 @@ function showConcertInfo(inputParameter){
 //spotify this song function start
 function showSongInfo(inputParameter) {
     if (inputParameter === undefined) {
-        inputParameter = "America"; //default Song
+        inputParameter = "The Sign";
     }
     spotify.search(
         {
@@ -80,15 +80,20 @@ function showSongInfo(inputParameter) {
                 console.log("----------SONG INFO----------");
                 fs.appendFileSync("log.txt", "----------SONG INFO----------\n");
                 console.log(i);
-                fs.appendFileSync("log.txt", i +"\n");
-                console.log("Song name: " + songs[i].name);
-                fs.appendFileSync("log.txt", "song name: " + songs[i].name +"\n");
-                console.log("Preview song: " + songs[i].preview_url);
-                fs.appendFileSync("log.txt", "preview song: " + songs[i].preview_url +"\n");
-                console.log("Album: " + songs[i].album.name);
-                fs.appendFileSync("log.txt", "album: " + songs[i].album.name + "\n");
                 console.log("Artist(s): " + songs[i].artists[0].name);
                 fs.appendFileSync("log.txt", "artist(s): " + songs[i].artists[0].name + "\n");
+
+                fs.appendFileSync("log.txt", i +"\n");
+                console.log("Song name: " + songs[i].name);
+                fs.appendFileSync("log.txt", "song name: " + songs[i].name +"\n");''
+
+                console.log("Preview song: " + songs[i].preview_url);
+                fs.appendFileSync("log.txt", "preview song: " + songs[i].preview_url +"\n");
+
+                console.log("Album: " + songs[i].album.name);
+                fs.appendFileSync("log.txt", "album: " + songs[i].album.name + "\n");
+
+                
                 console.log("-----------------------------");  
                 fs.appendFileSync("log.txt", "-----------------------------\n");
              }
